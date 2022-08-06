@@ -1,5 +1,5 @@
 import 'package:egegen/screens/home_screen.dart';
-import 'package:egegen/utils/theme_data.dart';
+import 'package:egegen/theme/theme_data.dart';
 import 'package:egegen/utils/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';

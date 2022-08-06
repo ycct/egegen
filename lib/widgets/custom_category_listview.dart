@@ -1,7 +1,7 @@
 import 'package:egegen/models/category_models.dart';
 import 'package:egegen/utils/constants.dart';
 import 'package:egegen/utils/extensions.dart';
-import 'package:egegen/utils/theme_data.dart';
+import 'package:egegen/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/fonts.dart';
