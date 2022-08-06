@@ -1,9 +1,9 @@
-import 'package:egegen/controllers/home_controller.dart';
 import 'package:egegen/utils/constants.dart';
 import 'package:egegen/utils/extensions.dart';
 import 'package:egegen/utils/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../data.dart';
 import '../utils/fonts.dart';
 import '../widgets/custom_all_products_listview.dart';
 import '../widgets/custom_appbar.dart';
