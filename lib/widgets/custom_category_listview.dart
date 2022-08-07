@@ -3,7 +3,6 @@ import 'package:egegen/utils/constants.dart';
 import 'package:egegen/utils/extensions.dart';
 import 'package:egegen/theme/theme_data.dart';
 import 'package:flutter/material.dart';
-
 import '../utils/fonts.dart';
 
 class CustomCategoryListView extends StatelessWidget {
@@ -26,7 +25,8 @@ class CustomCategoryListView extends StatelessWidget {
         itemCount: list.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(
+                horizontal: AppConstants.ultraSmallPadding),
             child: SizedBox(
               height: height,
               width: height,

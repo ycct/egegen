@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 import '../models/highlights_model.dart';
 import '../utils/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../utils/fonts.dart';
 
-class CustomHorListView extends StatelessWidget {
+class CustomHighlightsListView extends StatelessWidget {
   final double width;
   final double height;
   final List<HighlightsModel> list;
   final String discount;
   final String point;
 
-  const CustomHorListView({
+  const CustomHighlightsListView({
     Key? key,
     required this.width,
     required this.height,
@@ -41,6 +40,7 @@ class CustomHorListView extends StatelessWidget {
               child: Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Expanded(
@@ -66,11 +66,11 @@ class CustomHorListView extends StatelessWidget {
                                       fit: BoxFit.cover,
                                     ),
                                     Positioned(
-                                      left: AppConstants.ultraSmallPadding,
-                                      top: AppConstants.ultraSmallPadding,
+                                      left: AppConstants.extraSmallPadding,
+                                      top: AppConstants.extraSmallPadding,
                                       child: Text(
                                         discount,
-                                        style: customFont12.copyWith(
+                                        style: customFont12Bold.copyWith(
                                             color: context
                                                 .scaffoldBackgroundColor),
                                       ),

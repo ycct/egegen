@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
     const categoryCardHeight = 88.0;
     return Scaffold(
       appBar: CustomAppBar(
-          headerWidget: const Header(radius: 28),
+          headerWidget: Header(radius: 28, firstName: "name".tr),
           title: "searchFood".tr,
           appBarTotalHeight: appBarTotalHeight,
           appBarHeight: appBarHeight,
@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
             context.sizedBoxHeightExtraSmall,
             CustomTitle(title: "highlights".tr),
             context.sizedBoxHeightExtraSmall,
-            CustomHorListView(
+            CustomHighlightsListView(
               list: highlightsModelList,
               height: highlightsCardHeight,
               width: highlightsCardWidth,
@@ -54,6 +54,7 @@ class HomeScreen extends StatelessWidget {
             context.sizedBoxHeightExtraSmall,
             ...allProductsList.map(
               (e) => CustomAllProductListView(
+                height: highlightsCardHeight + 10,
                 productName: e.productName,
                 image: e.image,
                 discountedPrice: e.discountedPrice,
@@ -70,9 +71,11 @@ class HomeScreen extends StatelessWidget {
 }
 
 class Header extends StatelessWidget {
+  final String firstName;
   final double radius;
 
-  const Header({Key? key, required this.radius}) : super(key: key);
+  const Header({Key? key, required this.radius, required this.firstName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +104,7 @@ class Header extends StatelessWidget {
                   color: CustomThemeData.whiteColor),
               children: [
                 TextSpan(
-                  text: 'name'.tr,
+                  text: firstName,
                   style: customFont16SemiBold.copyWith(
                     color: context.primaryColorDark,
                   ),

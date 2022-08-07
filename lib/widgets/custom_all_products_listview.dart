@@ -10,6 +10,7 @@ class CustomAllProductListView extends StatelessWidget {
   final double discountedPrice;
   final String storeName;
   final String info;
+  final double height;
 
   const CustomAllProductListView({
     Key? key,
@@ -19,56 +20,123 @@ class CustomAllProductListView extends StatelessWidget {
     required this.discountedPrice,
     required this.storeName,
     required this.info,
+    required this.height,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const defaultCardPadding =
+        EdgeInsets.symmetric(horizontal: AppConstants.extraSmallPadding);
     return Padding(
       padding: const EdgeInsets.only(right: AppConstants.defaultPadding),
       child: SizedBox(
-        height: 160,
+        height: height,
         width: double.infinity,
         child: Card(
           elevation: 0,
           clipBehavior: Clip.antiAlias,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
                 flex: 3,
-                child: Image.asset(image, fit: BoxFit.cover),
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SizedBox(
+                height: AppConstants.ultraSmallPadding,
               ),
               Expanded(
-                flex: 1,
-                child: Row(
+                flex: 3,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
-                      flex: 3,
-                      child: Text(
-                        productName,
-                        style: customFont14SemiBold,
+                    Padding(
+                      padding: defaultCardPadding,
+                      child: TitleAndPrice(
+                        title: productName,
+                        titleStyle: customFont14SemiBold,
                       ),
                     ),
-                    const Expanded(
-                      flex: 2,
-                      child: SizedBox(),
-                    )
+                    Padding(
+                      padding: defaultCardPadding,
+                      child: TitleAndPrice(
+                        title: storeName,
+                        titleStyle: customFont12SemiBold.copyWith(
+                          color: context.secondaryHeaderColor,
+                        ),
+                        price: productPrice.toString(),
+                        priceStyle: customFont8SemiBold.copyWith(
+                          color: context.secondaryHeaderColor,
+                          decoration: TextDecoration.lineThrough,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: defaultCardPadding,
+                      child: TitleAndPrice(
+                        title: info,
+                        titleStyle: customFont10,
+                        price: discountedPrice.toString(),
+                        priceStyle: customFont16SemiBold,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: AppConstants.ultraSmallPadding,
+                    ),
                   ],
                 ),
-              ),
-              Expanded(
-                  child: Container(
-                color: Colors.redAccent,
-              )),
-              Expanded(
-                child: Container(
-                  color: context.primaryColorDark,
-                ),
-              ),
+              )
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class TitleAndPrice extends StatelessWidget {
+  const TitleAndPrice(
+      {Key? key,
+      required this.titleStyle,
+      required this.title,
+      this.price,
+      this.priceStyle})
+      : super(key: key);
+
+  final String title;
+  final String? price;
+  final TextStyle titleStyle;
+  final TextStyle? priceStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Expanded(
+          flex: 2,
+          child: Text(
+            title,
+            style: titleStyle,
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: price == null
+              ? const SizedBox()
+              : Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    "${price}0₺",
+                    style: priceStyle,
+                  ),
+                ),
+        ),
+      ],
     );
   }
 }

@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class AppConstants {
   //Icon Paths
   static const iconHome = "assets/icons/home.svg";
@@ -10,6 +8,8 @@ class AppConstants {
   //Image Paths
   static const profileImage = "assets/images/profile_image.jpg";
   static const gloriaJeans = "assets/images/gloria_jeans.jpg";
+  static const holidayCheers = "assets/images/holiday_cheers.jpg";
+  static const burger = "assets/images/burger.jpg";
   static const mcDonald = "assets/images/mc_donald.jpg";
   static const discount = "assets/images/discount.svg";
   static const all = "assets/images/hepsi.png";
