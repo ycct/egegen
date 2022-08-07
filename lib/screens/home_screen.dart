@@ -1,3 +1,4 @@
+import 'package:egegen/controllers/bottom_bar_controller.dart';
 import 'package:egegen/utils/constants.dart';
 import 'package:egegen/utils/extensions.dart';
 import 'package:egegen/theme/theme_data.dart';
@@ -16,6 +17,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BottomBarController controller = Get.put(BottomBarController());
     const searchBarHeight = 50.0;
     const appBarTotalHeight = 170.0;
     const appBarHeight = appBarTotalHeight - searchBarHeight / 2;
@@ -23,6 +25,11 @@ class HomeScreen extends StatelessWidget {
     const highlightsCardWidth = 280.0;
     const categoryCardHeight = 88.0;
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: const FloatingButton(),
+      bottomNavigationBar: BottomBar(
+        controller: controller,
+      ),
       appBar: CustomAppBar(
           headerWidget: Header(radius: 28, firstName: "name".tr),
           title: "searchFood".tr,
@@ -115,5 +122,44 @@ class Header extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class FloatingButton extends StatelessWidget {
+  const FloatingButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      backgroundColor: context.primaryColorLight,
+      onPressed: () {},
+      child: const Icon(
+        Icons.search,
+      ),
+    );
+  }
+}
+
+class BottomBar extends StatelessWidget {
+  const BottomBar({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final BottomBarController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+        currentIndex: 0,
+        selectedItemColor: context.primaryColorLight,
+        unselectedItemColor: context.disabledColor,
+        showUnselectedLabels: true,
+        type: BottomNavigationBarType.fixed,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
+        items: controller.bottomBarList);
   }
 }
