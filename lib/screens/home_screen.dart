@@ -9,7 +9,7 @@ import '../utils/fonts.dart';
 import '../widgets/custom_all_products_listview.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/custom_category_listview.dart';
-import '../widgets/custom_hor_listview.dart';
+import '../widgets/custom_highlights_listview.dart';
 import '../widgets/custom_title.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -93,32 +93,39 @@ class Header extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: radius,
-            backgroundColor: CustomThemeData.whiteColor,
-            child: CircleAvatar(
-              radius: radius - 2,
-              backgroundImage: const AssetImage(
-                AppConstants.profileImage,
-              ),
+          buildCircleAvatar(),
+          context.sizedBoxWidthExtraSmall,
+          buildRichText(context)
+        ],
+      ),
+    );
+  }
+
+  CircleAvatar buildCircleAvatar() {
+    return CircleAvatar(
+      radius: radius,
+      backgroundColor: CustomThemeData.whiteColor,
+      child: CircleAvatar(
+        radius: radius - 2,
+        backgroundImage: const AssetImage(
+          AppConstants.profileImage,
+        ),
+      ),
+    );
+  }
+
+  RichText buildRichText(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        text: 'hi'.tr,
+        style: customFont16SemiBold.copyWith(color: CustomThemeData.whiteColor),
+        children: [
+          TextSpan(
+            text: firstName,
+            style: customFont16SemiBold.copyWith(
+              color: context.primaryColorDark,
             ),
           ),
-          context.sizedBoxWidthExtraSmall,
-          RichText(
-            text: TextSpan(
-              text: 'hi'.tr,
-              style: customFont16SemiBold.copyWith(
-                  color: CustomThemeData.whiteColor),
-              children: [
-                TextSpan(
-                  text: firstName,
-                  style: customFont16SemiBold.copyWith(
-                    color: context.primaryColorDark,
-                  ),
-                ),
-              ],
-            ),
-          )
         ],
       ),
     );
